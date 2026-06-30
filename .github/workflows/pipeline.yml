@@ -1,0 +1,28 @@
+name: pipeline
+
+on: [push, workflow_dispatch]
+
+jobs:
+  lint-and-test:
+    name: Linting and Testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+
+      - name: Install Requirements
+        run: pip install --requirement development-requirements.txt
+
+      - name: Lint code
+        run: |
+          flake8 --ignore=E501,E231 *.py
+          pylint --disable=C0301 *.py
+
+      - name: Run Unit Tests
+        run: python -m unittest --verbose --failfast
+      
