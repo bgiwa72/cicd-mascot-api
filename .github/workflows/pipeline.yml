@@ -98,7 +98,7 @@ jobs:
       - name: Run tests using the container image
         run: |
           docker exec $SERVICE_NAME \
-            curl --silent --show-error --fail localhost:8080/healthy
+            curl --silent --show-error --fail localhost:8080/health
       
       - name: Stop ${{ env.SERVICE_NAME }}
         run: docker stop ${{ env.SERVICE_NAME}}
