@@ -98,7 +98,7 @@ jobs:
       - name: Run tests using the container image
         run: |
           docker exec $SERVICE_NAME \
-            curl --silent --show-error --fail localhost:8080/health
+            curl --silent --show-error --fail localhost:8080/healthy
           docker exec $SERVICE_NAME \
             curl --silent --show-error --fail localhost:8080/0524756-765e-41a9-89d7-1407436d9a58
       
